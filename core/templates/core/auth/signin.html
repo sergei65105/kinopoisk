@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+    <h1 class="text-center">Sign Up</h1>
+    <form action="" class="d-flex flex-column gap-3 mx-auto" style="max-width: 250px" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" class="form-control">
+        <input type="password" name="password" placeholder="Password" class="form-control">
+        <button type="submit" class="btn border-secondary">Login</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,6 @@
+.nav-link{
+    padding: 0;
+}
+.white_theme_icon{
+    filter: invert(.9);
+}

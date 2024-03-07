@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+    <h1 class="text-center">Профиль</h1>
+    <div class="d-flex my-5 gap-5 justify-content-center flex-wrap">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ request.user.avatar.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h3 class="card-title fs-4">{{ request.user.username }}</h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ request.user.email }}</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
