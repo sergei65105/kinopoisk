@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Genres{% endblock %}
+{% block content %}
+    <h1 class="text-center my-3">Жанры</h1>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+        {% for genre in genre %}
+            <div class="card rounded-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h3 class="card-title fs-4">{{ genre.name }}</h3>
+                    <div class="d-flex gap-1">
+                        <span class="card-title fw-bold fs-2 m-0">{{ genre.description }}</span>
+                    </div>
+                    <a href="{% url 'genre' id=genre.id %}"
+                       class="btn btn-secondary bg-transparent">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

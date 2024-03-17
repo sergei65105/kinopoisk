@@ -1,21 +1,6 @@
 from django.db import models
 
-from core.models import User
-
-
-# Create your models here.
-
-class Movie(models.Model):
-    title = models.CharField(max_length=300)
-    rating = models.FloatField(null=True, blank=True)
-    poster = models.ImageField(upload_to='kinopoisk/images/movie/poster/', null=True, blank=True)
-    description = models.TextField()
-    release_date = models.DateTimeField()
-    duration = models.PositiveSmallIntegerField()
-    genres = models.ManyToManyField('Genre', related_name='movies')
-    directors = models.ManyToManyField('MoviePerson', related_name='director_movies')
-    actors = models.ManyToManyField('MoviePerson', related_name='actor_movies')
-    budget = models.PositiveIntegerField()
+from Core.models import User
 
 
 class MoviePerson(models.Model):
@@ -23,29 +8,47 @@ class MoviePerson(models.Model):
         ACTOR = 'actor', 'Actor'
         DIRECTOR = 'director', 'Director'
 
-    name = models.CharField(max_length=200)
-    birth_date = models.DateField()
-    photo = models.ImageField(upload_to='kinopoisk/images/movie_person/photo/', null=True, blank=True)
-    role = models.CharField(max_length=20, blank=True, null=True, choices=RoleType.choices)
-    biography = models.TextField()
-
-
-# director = MoviePerson.objects.get(id=1)
-# director.movies.filter()
-# director.movie_set.all()
+    name = models.CharField(max_length=255)
+    birth_date = models.DateField(blank=True, null=True)
+    photo = models.ImageField(
+        upload_to="kinopoisk/images/person/photos/",
+        blank=True, null=True)
+    role = models.CharField(
+        max_length=20, choices=RoleType.choices,
+        blank=True, null=True)
 
 
 class Genre(models.Model):
-    name = models.CharField(max_length=250)
-    description = models.TextField(null=True, blank=True)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(blank=True, null=True)
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length=355)
+    description = models.TextField()
+    release_date = models.DateField(null=True, blank=True)
+    rating = models.FloatField(null=True, blank=True)
+    # Продолжительность в минутах
+    duration = models.PositiveSmallIntegerField()
+    genres = models.ManyToManyField(Genre, related_name='movies')
+    directors = models.ManyToManyField(
+        MoviePerson, related_name='directed_movies'
+    )
+    budget = models.PositiveIntegerField()
+    actors = models.ManyToManyField(
+        MoviePerson, related_name='acted_in_movies')
+    poster = models.ImageField(
+        upload_to="kinopoisk/images/movies/posters/",
+        blank=True, null=True)
 
 
 class MovieReview(models.Model):
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    author = models.ForeignKey(
+        User, on_delete=models.SET_NULL,
+        null=True, related_name='reviews')
+    movie = models.ForeignKey(
+        Movie, on_delete=models.CASCADE,
+        related_name='reviews')
     text = models.TextField()
     likes = models.PositiveIntegerField(default=0)
-    created_at = models.DateField(auto_now_add=True)
-
-# доделать модели и мигрировать их
-# отобразить в админке
+    created_at = models.DateTimeField(auto_now_add=True)

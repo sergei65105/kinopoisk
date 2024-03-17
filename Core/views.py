@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login
-from core.models import User
+from Core.models import User
 from django.shortcuts import render, redirect
 
 

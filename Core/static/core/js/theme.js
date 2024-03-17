@@ -2,11 +2,11 @@ const btnChangeTheme = document.querySelector('.btn-change-theme');
 
 function setTheme(value) {
     if (value) {
-        btnChangeTheme.src = '/static/core/img/moon.png'
+        btnChangeTheme.src = '/static/Core/img/moon.png'
         document.body.setAttribute('data-bs-theme', 'dark')
         btnChangeTheme.classList.add('white_theme_icon')
     } else {
-        btnChangeTheme.src = '/static/core/img/sun.png'
+        btnChangeTheme.src = '/static/Core/img/sun.png'
         document.body.setAttribute('data-bs-theme', 'light')
         btnChangeTheme.classList.remove('white_theme_icon')
     }

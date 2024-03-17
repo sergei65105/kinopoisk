@@ -1,0 +1,36 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Actors{% endblock %}
+{% block content %}
+    <h1 class="text-center my-3">Catalog</h1>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+        {% for movies in movies %}
+            <div class="card rounded-3" style="width: 18rem;">
+                <img src="{{ product.image.url }}"
+                     class="card-img-top rounded-2 object-fit-cover"
+                     alt="..." style="width: 18rem; height: 18rem;">
+                <div class="card-body">
+                    <div class="d-flex gap-1">
+                        <span class="card-title fw-bold fs-2 m-0">{{ product.price }}</span>
+                        <span class="card-title fs-5 text-danger mb-auto">-{{ product.discount }}%</span>
+                    </div>
+                    <h3 class="card-title fs-4">{{ product.name }}</h3>
+                    <div class="d-flex mb-2 gap-1">
+                        {% for star in "12345" %}
+                            {% if forloop.counter <= product.rating %}
+                                <img src="{% static 'core/img/good.png' %}" alt="" width="25" height="25">
+                            {% else %}
+                                <img src="{% static 'core/img/good.png' %}"
+                                     alt="" width="25" height="25"
+                                     style="filter: grayscale(1)">
+                            {% endif %}
+                        {% endfor %}
+                        <span>300</span>
+                    </div>
+                    <a href="{% url 'product_detail' id=product.id %}"
+                       class="btn btn-secondary bg-transparent">Подробнее</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

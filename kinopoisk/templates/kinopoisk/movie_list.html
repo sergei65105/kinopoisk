@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Movies{% endblock %}
+{% block content %}
+    <h1 class="text-center my-3">Фильмы</h1>
+    <div class="mw-1000px frc flex-wrap gap-3">
+        {% for movie in movies %}
+            {% include 'kinopoisk/includes/movie_card.html' with movie=movie %}
+        {% endfor %}
+    </div>
+{% endblock %}
