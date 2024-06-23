@@ -5,7 +5,9 @@
     <h1 class="text-center">Профиль</h1>
     <div class="d-flex my-5 gap-5 justify-content-center flex-wrap">
         <div class="card" style="width: 18rem;">
+            {% if request.user.avatar %}
             <img src="{{ request.user.avatar.url }}" class="card-img-top" alt="...">
+            {% endif %}
             <div class="card-body">
                 <h3 class="card-title fs-4">{{ request.user.username }}</h3>
             </div>

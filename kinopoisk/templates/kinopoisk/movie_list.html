@@ -1,11 +1,16 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Movies{% endblock %}
+{% block head %}
+    <link href="{% static 'kinopoisk/css/kinopoisk.css' %}" rel="stylesheet">
+{% endblock %}
 {% block content %}
-    <h1 class="text-center my-3">Фильмы</h1>
-    <div class="mw-1000px frc flex-wrap gap-3">
-        {% for movie in movies %}
-            {% include 'kinopoisk/includes/movie_card.html' with movie=movie %}
-        {% endfor %}
+    <h1 class="text-center mt-5 mt-sm-0 flex-sm-column flex-row ">Фильмы</h1>
+    <div class="w-100 justify-content-center d-flex">
+        <div class="mw-1000px frc flex-wrap gap-3 movie_base_container">
+            {% for movie in movies %}
+                {% include 'kinopoisk/includes/movie_card.html' with movie=movie %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -9,7 +9,10 @@ urlpatterns = [
     path('directors/', director_list, name='director_list'),
     path('genres/', genre_list, name='genre_list'),
     path('movie/<int:movie_id>/', movie_detail, name='movie_detail'),
-    path('actor/<int:actor_id>/', actor_detail, name='actor_detail'),
-    path('director/<int:director_id>/', director_detail, name='director_detail'),
+    path('person/<int:person_id>/', person_detail, name='person_detail'),
     path('genre/<int:genre_id>/', genre_detail, name='genre_detail'),
+    path('add_movie_review/', add_movie_review, name='add_movie_review'),
+    path('get_movie_reviews/', get_movie_reviews, name='get_movie_reviews'),
+    path('get_genres/', get_genres, name='get_genres'),
+    path('movie_review_vote/', movie_review_vote, name='movie_review_vote'),
 ]

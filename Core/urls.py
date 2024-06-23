@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', logout, name='logout'),
     path('profile/<int:id>/', profile, name='profile'),
     path('', include('kinopoisk.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 
 ]
 

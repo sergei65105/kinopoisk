@@ -1,0 +1,10 @@
+<a href="{% url 'person_detail' person_id=person.id %}" class="text-decoration-none
+text-dark-emphasis mw-300px fc w-100">
+    <div class="mw-300px fc w-100">
+        <img src="{{ person.photo.url }}" alt="" class="flex-grow-1 object-fit-cover">
+        <div class="pb-1">
+            <h3 class="pb-0">{{ person.name }}</h3>
+            <h5 class="mt-auto">{{ person.birth_date }}</h5>
+        </div>
+    </div>
+</a>

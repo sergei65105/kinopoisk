@@ -16,6 +16,12 @@
                 <div class="navbar-nav align-items-center">
                     <a href="{% url 'movie_list' %}"
                        class="nav-link active">Фильмы</a>
+                    <a href="{% url 'actor_list' %}"
+                       class="nav-link active">Актёры</a>
+                    <a href="{% url 'director_list' %}"
+                       class="nav-link active">Режиссёры</a>
+                    <a href="{% url 'genre_list' %}"
+                       class="nav-link active">Жанры</a>
                     <div class="d-flex align-items-center gap-2">
                         <img src="{% static 'core/img/moon.png' %}" class="btn-change-theme white_theme_icon"
                              height="24">

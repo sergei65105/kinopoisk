@@ -1,0 +1,18 @@
+.gradient-text {
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fccf5d 0%, #b39446 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.movie_person_container .movie_card{
+  max-width: 200px;
+}
+.movie_base_container .movie_card{
+  max-width: 300px;
+}
+.like-icon-active{
+  color: #f12a42!important;
+}
+.like-icon{
+  color: #fffa;
+}

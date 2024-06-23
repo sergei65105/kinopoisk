@@ -1,36 +1,30 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Actors{% endblock %}
+{% block head %}
+    <link href="{% static 'kinopoisk/css/kinopoisk.css' %}" rel="stylesheet">
+{% endblock %}
 {% block content %}
-    <h1 class="text-center my-3">Catalog</h1>
-    <div class="d-flex gap-3 justify-content-center flex-wrap">
-        {% for movies in movies %}
-            <div class="card rounded-3" style="width: 18rem;">
-                <img src="{{ product.image.url }}"
-                     class="card-img-top rounded-2 object-fit-cover"
-                     alt="..." style="width: 18rem; height: 18rem;">
-                <div class="card-body">
-                    <div class="d-flex gap-1">
-                        <span class="card-title fw-bold fs-2 m-0">{{ product.price }}</span>
-                        <span class="card-title fs-5 text-danger mb-auto">-{{ product.discount }}%</span>
-                    </div>
-                    <h3 class="card-title fs-4">{{ product.name }}</h3>
-                    <div class="d-flex mb-2 gap-1">
-                        {% for star in "12345" %}
-                            {% if forloop.counter <= product.rating %}
-                                <img src="{% static 'core/img/good.png' %}" alt="" width="25" height="25">
-                            {% else %}
-                                <img src="{% static 'core/img/good.png' %}"
-                                     alt="" width="25" height="25"
-                                     style="filter: grayscale(1)">
-                            {% endif %}
-                        {% endfor %}
-                        <span>300</span>
-                    </div>
-                    <a href="{% url 'product_detail' id=product.id %}"
-                       class="btn btn-secondary bg-transparent">Подробнее</a>
+    <div>
+        <div class="mw-1200px w-300 flex-wrap frcs gap-3">
+            <img src="{{ person.photo.url }}" alt="" class="mw-300px flex-grow-1 object-fit-cover">
+            <div class="pb-1 mw-500px fc">
+                <div class="frbc gap-3">
+                    <h1 class="pb-0">{{ person.name }}</h1>
+                    <span class="pb-0">{{ person.birth_date }}</span>
+                </div>
+                <div class="movie_person_container">
+                    {% for movie in person.acted_in_movies.all %}
+                        {% include 'kinopoisk/includes/movie_card.html' with movie=movie %}
+                    {% endfor %}
+                    {% for movie in person.directed_movies.all %}
+                        {% include 'kinopoisk/includes/movie_card.html' with movie=movie %}
+                    {% endfor %}
                 </div>
             </div>
-        {% endfor %}
+        </div>
+        <div class="mw-1200px frc flex-wrap gap-3">
+
+        </div>
     </div>
 {% endblock %}

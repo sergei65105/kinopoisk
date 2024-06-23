@@ -17,10 +17,20 @@ class MoviePerson(models.Model):
         max_length=20, choices=RoleType.choices,
         blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Genre(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class SibnetPlayer(models.Model):
+    id = models.BigIntegerField(primary_key=True)
 
 
 class Movie(models.Model):
@@ -40,6 +50,7 @@ class Movie(models.Model):
     poster = models.ImageField(
         upload_to="kinopoisk/images/movies/posters/",
         blank=True, null=True)
+    player = models.OneToOneField(to=SibnetPlayer, on_delete=models.SET_NULL, null=True)
 
 
 class MovieReview(models.Model):
@@ -50,5 +61,15 @@ class MovieReview(models.Model):
         Movie, on_delete=models.CASCADE,
         related_name='reviews')
     text = models.TextField()
-    likes = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class MovieReviewVote(models.Model):
+    review = models.ForeignKey(MovieReview,
+                               on_delete=models.CASCADE,
+                               related_name='votes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='votes')
+
+    class Meta:
+        unique_together = ('review', 'user')

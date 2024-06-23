@@ -53,3 +53,10 @@ class MovieReviewAdmin(admin.ModelAdmin):
         'movie',
         'text',
     )
+
+
+@admin.register(SibnetPlayer)
+class SibnetPlayerAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+    )

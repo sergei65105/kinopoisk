@@ -1,11 +1,14 @@
-<div class="mw-300px fc">
-    <img src="{{ movie.poster.url }}" alt="">
-    <h3>{{ movie.title }}</h3>
-    <span>{{ movie.rating }}</span>
+<a href="{% url 'movie_detail' movie_id=movie.id %}" class="text-decoration-none
+text-dark-emphasis fc w-100 movie_card">
+    <img src="{{ movie.poster.url }}" alt="" class="flex-grow-1 object-fit-cover">
+    <div class="pb-1">
+        <h3 class="pb-0">{{ movie.title }}</h3>
+        <h5 class="mt-auto">{{ movie.rating }}</h5>
+    </div>
     <span>
           {% for genre in movie.genres.all %}
               <span>{{ genre.name }}{% if not forloop.last %}, {% endif %}</span>
           {% endfor %}
     </span>
-    <span>{{ movie.release_date }}</span>
-</div>
+    <span class="mt-auto">{{ movie.release_date }}</span>
+</a>
